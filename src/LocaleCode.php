@@ -23,8 +23,8 @@ namespace pkg6\paypal;
  */
 final class LocaleCode
 {
-    const en_US = 'en_US';
-    const fr_XC = 'fr_XC';
-    const es_XC = 'es_XC';
-    const zh_XC = 'zh_XC';
+    const EN_US = 'en_US';
+    const FR_XC = 'fr_XC';
+    const ES_XC = 'es_XC';
+    const ZH_XC = 'zh_XC';
 }

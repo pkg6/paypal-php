@@ -185,7 +185,7 @@ trait PayPalHttpClient
         $paymentAction = empty($this->paymentAction) ? 'Sale' : $this->paymentAction;
         $this->paymentAction = $paymentAction;
 
-        $locale = empty($this->locale) ? LocaleCode::en_US : $this->locale;
+        $locale = empty($this->locale) ? LocaleCode::EN_US : $this->locale;
         $this->locale = $locale;
 
         $validateSSL = empty($this->validateSSL) ? true : $this->validateSSL;

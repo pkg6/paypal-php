@@ -456,7 +456,7 @@ trait Helpers
      */
     public function addSetupFee(float $price)
     {
-        $this->hasSetupFee        = true;
+        $this->hasSetupFee = true;
         $this->paymentPreferences = [
             'auto_bill_outstanding' => true,
             'setup_fee' => [

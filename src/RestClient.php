@@ -72,11 +72,22 @@ class RestClient
 
     /**
      * @param array $config
+     * @param LoggerInterface|null $logger
+     * @param CacheInterface|null $cache
      */
-    public function __construct(array $config)
-    {
+    public function __construct(
+        array $config,
+        LoggerInterface $logger = null,
+        CacheInterface $cache = null
+    ) {
         $this->setApiCredentials($config);
         $this->setRequestHeader('Accept', 'application/json');
+        if ( ! is_null($logger)) {
+            $this->setLogger($logger);
+        }
+        if ( ! is_null($cache)) {
+            $this->setCache($cache);
+        }
     }
 
     /**
@@ -93,14 +104,15 @@ class RestClient
 
     /**
      * @param CacheInterface $cache
+     *
      * @return $this
      */
     public function setCache(CacheInterface $cache)
     {
         $this->cache = $cache;
+
         return $this;
     }
-
 
     /**
      * @param array $credentials

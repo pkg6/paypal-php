@@ -14,6 +14,8 @@
 
 namespace pkg6\paypal\rest;
 
+use GuzzleHttp\Utils;
+
 trait PayPalAPI
 {
     use PayPalAPI\Trackers;
@@ -46,6 +48,26 @@ trait PayPalAPI
      * @var string
      */
     protected $accessToken;
+
+    /**
+     * @return array|bool|float|int|object|\Psr\Http\Message\StreamInterface|string|null
+     *
+     * @throws \Psr\SimpleCache\InvalidArgumentException
+     * @throws \Throwable
+     */
+    public function getAccessTokenWithCache()
+    {
+        $cacheKey = $this->config['client_id'] . '-' . $this->config['client_secret'] . '-' . md5(json_encode($this->config));
+        if ($this->cache->has($cacheKey)) {
+            $response = Utils::jsonDecode($this->cache->get($cacheKey), true);
+        } else {
+            $response = $this->getAccessToken();
+            $this->cache->set($cacheKey, Utils::jsonEncode($response), $response['expires_in'] ?? 0);
+        }
+        $this->setAccessToken($response);
+
+        return $response;
+    }
 
     /**
      * Login through PayPal API to get access token.
