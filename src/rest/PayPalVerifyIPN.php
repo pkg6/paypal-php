@@ -14,7 +14,7 @@
 
 namespace pkg6\paypal\rest;
 
-use pkg6\paypal\support\Request;
+use Symfony\Component\HttpFoundation\Request;
 
 trait PayPalVerifyIPN
 {
@@ -42,9 +42,9 @@ trait PayPalVerifyIPN
      *
      * @throws \Throwable
      */
-    public function verifyIPN()
+    public function verifyIPN(Request $request)
     {
-        $headers = array_change_key_case(Request::header(), CASE_UPPER);
+        $headers = array_change_key_case($request->headers->all(), CASE_UPPER);
 
         if ( ! isset($headers['PAYPAL-AUTH-ALGO'][0]) ||
             ! isset($headers['PAYPAL-TRANSMISSION-ID'][0]) ||
@@ -57,7 +57,7 @@ trait PayPalVerifyIPN
 
             return ['error' => 'Invalid headers or webhook id provided'];
         }
-        $params = json_decode(Request::getContent());
+        $params = json_decode($request->getContent());
         $payload = [
             'auth_algo' => $headers['PAYPAL-AUTH-ALGO'][0],
             'cert_url' => $headers['PAYPAL-CERT-URL'][0],
