@@ -14,6 +14,8 @@
 
 namespace pkg6\paypal;
 
+use pkg6\paypal\contract\CodeInterface;
+
 /**
  * Class StateCode.
  *
@@ -21,7 +23,12 @@ namespace pkg6\paypal;
  *
  * @see https://developer.paypal.com/api/rest/reference/state-codes/
  */
-class StateCode
+class StateCode implements CodeInterface
 {
     //TODO
+
+    public static function url()
+    {
+        return "https://developer.paypal.com/api/rest/reference/state-codes/";
+    }
 }

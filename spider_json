@@ -1,0 +1,15 @@
+#!/usr/bin/env php
+
+<?php
+
+
+use pkg6\paypal\Code;
+
+require 'vendor/autoload.php';
+
+
+$code = new Code();
+
+foreach ($code->spider(true) as $class=>$line){
+    echo $class.':'.$line."\n";
+}

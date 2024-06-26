@@ -14,6 +14,8 @@
 
 namespace pkg6\paypal;
 
+use pkg6\paypal\contract\CodeInterface;
+
 /**
  * Class CountryCode.
  *
@@ -21,7 +23,7 @@ namespace pkg6\paypal;
  *
  * @see https://developer.paypal.com/api/rest/reference/country-codes/
  */
-class CountryCode
+class CountryCode implements CodeInterface
 {
     const AL = 'AL';
     const DZ = 'DZ';
@@ -432,5 +434,10 @@ class CountryCode
     public static function codes()
     {
         return array_keys(self::codes);
+    }
+
+    public static function url()
+    {
+        return "https://developer.paypal.com/api/rest/reference/country-codes/";
     }
 }

@@ -14,6 +14,8 @@
 
 namespace pkg6\paypal;
 
+use pkg6\paypal\contract\CodeInterface;
+
 /**
  * Class LocaleCode.
  *
@@ -21,10 +23,15 @@ namespace pkg6\paypal;
  *
  * @see https://developer.paypal.com/api/rest/reference/locale-codes/
  */
-final class LocaleCode
+final class LocaleCode implements CodeInterface
 {
     const EN_US = 'en_US';
     const FR_XC = 'fr_XC';
     const ES_XC = 'es_XC';
     const ZH_XC = 'zh_XC';
+
+    public static function url()
+    {
+        return "https://developer.paypal.com/api/rest/reference/locale-codes/";
+    }
 }
