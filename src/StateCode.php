@@ -22,6 +22,7 @@ use pkg6\paypal\contract\CodeInterface;
  * @author zhiqiang
  *
  * @see https://developer.paypal.com/api/rest/reference/state-codes/
+ * @see Code
  */
 class StateCode implements CodeInterface
 {

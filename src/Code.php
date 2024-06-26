@@ -124,7 +124,7 @@ class Code
 
     /**
      * @return array
-     *
+     * @see https://developer.paypal.com/api/rest/reference/country-codes/
      * @throws \Exception
      */
     public function readCountry()
@@ -134,7 +134,7 @@ class Code
 
     /**
      * @return array
-     *
+     * @see https://developer.paypal.com/api/rest/reference/currency-codes/
      * @throws \Exception
      */
     public function readCurrency()
@@ -144,7 +144,7 @@ class Code
 
     /**
      * @return array
-     *
+     * @see https://developer.paypal.com/api/rest/reference/locale-codes/
      * @throws \Exception
      */
     public function readLocale()
@@ -154,7 +154,7 @@ class Code
 
     /**
      * @return array
-     *
+     * @see https://developer.paypal.com/api/rest/reference/state-codes/
      * @throws \Exception
      */
     public function readState()
@@ -169,11 +169,9 @@ class Code
      *
      * @throws \Exception
      */
-    public function readByClass($class)
+    protected function readByClass($class)
     {
         $filename = $this->filename($class);
-
         return json_decode(file_get_contents($filename), true);
     }
-
 }
