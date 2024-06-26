@@ -14,6 +14,8 @@
 
 namespace pkg6\paypal;
 
+use pkg6\paypal\contract\CodeInterface;
+
 /**
  * Class CurrencyCode.
  *
@@ -21,7 +23,7 @@ namespace pkg6\paypal;
  *
  * @see https://developer.paypal.com/api/rest/reference/currency-codes/
  */
-class CurrencyCode
+class CurrencyCode implements CodeInterface
 {
     const AUD = 'AUD';
     const BRL = 'BRL';
@@ -80,5 +82,10 @@ class CurrencyCode
     public static function codes()
     {
         return array_keys(self::codes);
+    }
+
+    public static function url()
+    {
+        return "https://developer.paypal.com/api/rest/reference/currency-codes/";
     }
 }
