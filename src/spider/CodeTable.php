@@ -59,11 +59,11 @@ class CodeTable
         $ql = QueryList::html($html);
         $result = [];
         $ql->find("table")->map(function (Elements $element) use (&$result) {
-            $headers = $element->find('thead th')->texts()->all();
-            $rows = $element->find('tbody tr')->map(function ($row) {
+            $header = $element->find('thead th')->texts()->all();
+            $row = $element->find('tbody tr')->map(function ($row) {
                 return $row->find('td')->texts()->all();
             })->all();
-            $result = [$headers, $rows];
+            $result = compact('header', 'row');
         });
 
         return $result;
@@ -86,11 +86,11 @@ class CodeTable
             $sectionTitle = $h2->text();
             $table = $h2->nextAll('table')->eq(0);
             if ($table->count() > 0) {
-                $headers = $table->find('thead th')->texts()->all();
-                $rows = $table->find('tbody tr')->map(function ($row) {
+                $header = $table->find('thead th')->texts()->all();
+                $row = $table->find('tbody tr')->map(function ($row) {
                     return $row->find('td')->texts()->all();
                 })->all();
-                $result[$sectionTitle] = [$headers, $rows];
+                $result[$sectionTitle] = compact('header', 'row');
             }
         });
 
