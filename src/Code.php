@@ -123,56 +123,41 @@ class Code
     }
 
     /**
-     * @param $class
-     *
-     * @return string
+     * @return array
      *
      * @throws \Exception
      */
-    public function key($class)
-    {
-        if (isset($this->codeJsonFile[$class]['key'])) {
-            return $this->codeJsonFile[$class]['key'];
-        }
-        throw new \Exception("class not found");
-    }
-
-    /**
-     * @return mixed
-     *
-     * @throws \Exception
-     */
-    public function countryAll()
+    public function readCountry()
     {
         return $this->readByClass(CountryCode::class);
     }
 
     /**
-     * @return mixed
+     * @return array
      *
      * @throws \Exception
      */
-    public function currencyAll()
+    public function readCurrency()
     {
         return $this->readByClass(CurrencyCode::class);
     }
 
     /**
-     * @return mixed
+     * @return array
      *
      * @throws \Exception
      */
-    public function localeAll()
+    public function readLocale()
     {
         return $this->readByClass(LocaleCode::class);
     }
 
     /**
-     * @return mixed
+     * @return array
      *
      * @throws \Exception
      */
-    public function stateAll()
+    public function readState()
     {
         return $this->readByClass(StateCode::class);
     }
@@ -180,7 +165,7 @@ class Code
     /**
      * @param $class
      *
-     * @return mixed
+     * @return array
      *
      * @throws \Exception
      */
