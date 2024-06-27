@@ -228,7 +228,7 @@ class CountryCode implements CodeInterface
     const ZM = 'ZM';
     const ZW = 'ZW';
 
-    const codes = [
+    const codeText = [
         self::AL => 'ALBANIA',
         self::DZ => 'ALGERIA',
         self::AD => 'ANDORRA',
@@ -434,7 +434,7 @@ class CountryCode implements CodeInterface
 
     public static function codes()
     {
-        return array_keys(self::codes);
+        return array_keys(self::codeText);
     }
 
     public static function url()

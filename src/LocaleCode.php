@@ -31,8 +31,20 @@ final class LocaleCode implements CodeInterface
     const ES_XC = 'es_XC';
     const ZH_XC = 'zh_XC';
 
+    const codeText = [
+        LocaleCode::EN_US => LocaleCode::EN_US,
+        LocaleCode::FR_XC => LocaleCode::FR_XC,
+        LocaleCode::ES_XC => LocaleCode::ES_XC,
+        LocaleCode::ZH_XC => LocaleCode::ZH_XC,
+    ];
+
     public static function url()
     {
         return "https://developer.paypal.com/api/rest/reference/locale-codes/";
+    }
+
+    public static function codes()
+    {
+        return array_keys(self::codeText);
     }
 }

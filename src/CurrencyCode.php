@@ -52,7 +52,7 @@ class CurrencyCode implements CodeInterface
     const THB = 'THB';
     const USD = 'USD';
 
-    const codes = [
+    const codeText = [
         self::AUD => 'Australian dollar',
         self::BRL => 'Brazilian real',
         self::CAD => 'Canadian dollar',
@@ -82,7 +82,7 @@ class CurrencyCode implements CodeInterface
 
     public static function codes()
     {
-        return array_keys(self::codes);
+        return array_keys(self::codeText);
     }
 
     public static function url()

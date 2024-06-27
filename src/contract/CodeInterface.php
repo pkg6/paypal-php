@@ -16,5 +16,6 @@ namespace pkg6\paypal\contract;
 
 interface CodeInterface
 {
+    public static function codes();
     public static function url();
 }
