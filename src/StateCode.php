@@ -27,9 +27,14 @@ use pkg6\paypal\contract\CodeInterface;
 class StateCode implements CodeInterface
 {
     //TODO
-
+    const codeText = [];
     public static function url()
     {
         return "https://developer.paypal.com/api/rest/reference/state-codes/";
+    }
+
+    public static function codes()
+    {
+        return [];
     }
 }
