@@ -42,6 +42,8 @@ trait PayPalAPI
     use PayPalAPI\WebHooksVerification;
     use PayPalAPI\WebHooksEvents;
 
+    use PayPalAPI\OAuth2;
+
     /**
      * PayPal access token.
      *
@@ -79,14 +81,14 @@ trait PayPalAPI
      * @see https://developer.paypal.com/docs/api/get-an-access-token-curl/
      * @see https://developer.paypal.com/docs/api/get-an-access-token-postman/
      */
-    public function getAccessToken()
+    public function getAccessToken($form_params = [])
     {
         $this->apiEndPoint = 'v1/oauth2/token';
 
         $this->options['auth'] = [$this->config['client_id'], $this->config['client_secret']];
-        $this->options[$this->httpBodyParam] = [
+        $this->options[$this->httpBodyParam] = array_merge([
             'grant_type' => 'client_credentials',
-        ];
+        ], $form_params);
         $response = $this->doPayPalRequest();
         unset($this->options['auth']);
         unset($this->options[$this->httpBodyParam]);
