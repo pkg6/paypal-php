@@ -33,6 +33,7 @@ trait OAuth2
      * @see showProfileInfo()
      *  or
      * @see OAuth2GetUserByCode
+     *
      * @ getUserInfo
      */
     public function oAuth2GenerateURL($redirectUrl, $mergeField = [])
