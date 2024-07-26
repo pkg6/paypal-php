@@ -18,8 +18,8 @@ require 'vendor/autoload.php';
 
 $config = [
     'mode' => 'sandbox', // Can only be 'sandbox' Or 'live'. If empty or invalid, 'live' will be used.
-    'client_id' => 'AevBF4PqFcmD0eCBWFK_x06-DP6XlF_o4Q5biHs4Fr2c1FpIa-xBvCo-OqcKdMSYzETwlxTSl4c1slTp',
-    'client_secret' => 'EAovilZWM798SG51rfhIwjJQ04HirWlXHO7SFzzs0_t3mRd8Wt2u7yNGNCPTW2kJ2k39wt7HrQT919zO',
+    'client_id' => '',
+    'client_secret' => '',
     'app_id' => 'APP-80W284485P519543T',
     'payment_action' => 'Sale', // Can only be 'Sale', 'Authorization' or 'Order'
     'currency' => 'USD',
