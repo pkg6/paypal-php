@@ -129,6 +129,7 @@ class RestClient
         $this->setApiProviderConfiguration($credentials);
         // Set Http Client configuration.
         $this->setHttpClientConfiguration();
+
         return $this;
     }
 
@@ -148,6 +149,7 @@ class RestClient
             throw new RuntimeException('Currency is not supported by PayPal.');
         }
         $this->currency = $currency;
+
         return $this;
     }
 
