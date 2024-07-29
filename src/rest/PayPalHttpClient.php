@@ -159,18 +159,14 @@ trait PayPalHttpClient
     protected function setHttpClientConfiguration()
     {
         $this->setCurlConstants();
-
         $this->httpClientConfig = [
             CURLOPT_SSLVERSION => CURL_SSLVERSION_TLSv1_2,
             CURLOPT_SSL_VERIFYPEER => $this->validateSSL,
         ];
-
         // Initialize Http Client
         $this->setClient();
-
         // Set default values.
         $this->setDefaultValues();
-
         // Set PayPal IPN Notification URL
         $this->notifyUrl = $this->config['notify_url'];
     }

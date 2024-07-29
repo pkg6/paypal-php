@@ -85,7 +85,6 @@ class Code
                 $ret[$class] = file_put_contents($filename, Str::json_encode($data));
             }
         }
-
         return $ret;
     }
 

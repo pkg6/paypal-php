@@ -129,7 +129,6 @@ class RestClient
         $this->setApiProviderConfiguration($credentials);
         // Set Http Client configuration.
         $this->setHttpClientConfiguration();
-
         return $this;
     }
 
@@ -149,7 +148,6 @@ class RestClient
             throw new RuntimeException('Currency is not supported by PayPal.');
         }
         $this->currency = $currency;
-
         return $this;
     }
 
@@ -184,7 +182,6 @@ class RestClient
     protected function setApiProviderConfiguration(array $credentials)
     {
         $config_params = ['client_id', 'client_secret'];
-
         foreach ($config_params as $item) {
             if (empty($credentials[$item])) {
                 throw new RuntimeException("{$item} missing from the provided configuration. Please add your application {$item}.");
@@ -202,6 +199,20 @@ class RestClient
         $this->setOptions($credentials);
     }
 
+    public function setLiveURL()
+    {
+        $this->config['api_url'] = 'https://api-m.paypal.com';
+        $this->config['gateway_url'] = 'https://www.paypal.com';
+        $this->config['ipn_url'] = 'https://ipnpb.paypal.com/cgi-bin/webscr';
+    }
+
+    public function setSandboxURL()
+    {
+        $this->config['api_url'] = 'https://api-m.sandbox.paypal.com';
+        $this->config['gateway_url'] = 'https://www.sandbox.paypal.com';
+        $this->config['ipn_url'] = 'https://ipnpb.sandbox.paypal.com/cgi-bin/webscr';
+    }
+
     /**
      * @param array $credentials
      *
@@ -210,18 +221,10 @@ class RestClient
     protected function setOptions($credentials)
     {
         // Setting API Endpoints
-        $this->config['api_url'] = 'https://api-m.paypal.com';
-
-        $this->config['gateway_url'] = 'https://www.paypal.com';
-        $this->config['ipn_url'] = 'https://ipnpb.paypal.com/cgi-bin/webscr';
-
+        $this->setLiveURL();
         if ($this->mode === 'sandbox') {
-            $this->config['api_url'] = 'https://api-m.sandbox.paypal.com';
-
-            $this->config['gateway_url'] = 'https://www.sandbox.paypal.com';
-            $this->config['ipn_url'] = 'https://ipnpb.sandbox.paypal.com/cgi-bin/webscr';
+            $this->setSandboxURL();
         }
-
         // Adding params outside sandbox / live array
         $this->config['payment_action'] = $credentials['payment_action'];
         $this->config['notify_url'] = $credentials['notify_url'];
