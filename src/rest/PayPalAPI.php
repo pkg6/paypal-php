@@ -59,10 +59,18 @@ trait PayPalAPI
      */
     public function getAccessTokenWithCache()
     {
+        if (is_null($this->cache)) {
+            return $this->getAccessToken();
+        }
         $cacheKey = $this->config['client_id'] . '-' . $this->config['client_secret'] . '-' . md5(json_encode($this->config));
+        $response = [];
         if ($this->cache->has($cacheKey)) {
-            $response = Utils::jsonDecode($this->cache->get($cacheKey), true);
-        } else {
+            $cacheValue = $this->cache->get($cacheKey);
+            if ( ! empty($cacheValue)) {
+                $response = Utils::jsonDecode($cacheValue, true);
+            }
+        }
+        if (empty($response)) {
             $response = $this->getAccessToken();
             $this->cache->set($cacheKey, Utils::jsonEncode($response), $response['expires_in'] ?? 0);
         }
