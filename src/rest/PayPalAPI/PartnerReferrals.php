@@ -16,14 +16,40 @@ namespace pkg6\paypal\rest\PayPalAPI;
 
 trait PartnerReferrals
 {
+
+    public function setPartnerHeader($clientId, $payerId)
+    {
+        //https://developer.paypal.com/api/rest/requests/#paypal-partner-attribution-id.
+        $assertionFn = function ($clientId, $payerId) {
+            $base64UrlEncode = function ($input) {
+                return str_replace(['+', '/', '='], ['-', '_', ''], base64_encode($input));
+            };
+            // JWT Header
+            $header = json_encode(['alg' => 'none']);
+            $encodedHeader = $base64UrlEncode($header);
+            // JWT Payload
+            $payload = json_encode([
+                'iss' => $clientId,
+                'payer_id' => $payerId,
+            ]);
+            $encodedPayload = $base64UrlEncode($payload);
+            // Signature (empty for unsigned JWT)
+            $signature = '';
+            // Concatenate the parts with periods
+            return "{$encodedHeader}.{$encodedPayload}.{$signature}";
+        };
+        $this->setRequestHeader("PayPal-Partner-Attribution-Id", "");
+        $this->setRequestHeader("PayPal-Auth-Assertion", $assertionFn($clientId, $payerId));
+    }
+
     /**
      * Create a Partner Referral.
      *
      * @param array $partner_data
      *
-     * @throws \Throwable
-     *
      * @return array|\Psr\Http\Message\StreamInterface|string
+     *
+     * @throws \Throwable
      *
      * @see https://developer.paypal.com/docs/api/partner-referrals/v2/#partner-referrals_create
      */
@@ -43,9 +69,9 @@ trait PartnerReferrals
      *
      * @param string $partner_referral_id
      *
-     * @throws \Throwable
-     *
      * @return array|\Psr\Http\Message\StreamInterface|string
+     *
+     * @throws \Throwable
      *
      * @see https://developer.paypal.com/docs/api/partner-referrals/v2/#partner-referrals_read
      */
@@ -64,9 +90,9 @@ trait PartnerReferrals
      * @param string $partner_id
      * @param string $tracking_id
      *
-     * @throws \Throwable
-     *
      * @return array|\Psr\Http\Message\StreamInterface|string
+     *
+     * @throws \Throwable
      *
      * @see https://developer.paypal.com/docs/api/partner-referrals/v1/#merchant-integration_find
      */
@@ -85,9 +111,9 @@ trait PartnerReferrals
      * @param string $partner_id
      * @param string $merchant_id
      *
-     * @throws \Throwable
-     *
      * @return array|\Psr\Http\Message\StreamInterface|string
+     *
+     * @throws \Throwable
      *
      * @see https://developer.paypal.com/docs/api/partner-referrals/v1/#merchant-integration_status
      */
@@ -105,9 +131,9 @@ trait PartnerReferrals
      *
      * @param string $partner_id
      *
-     * @throws \Throwable
-     *
      * @return array|\Psr\Http\Message\StreamInterface|string
+     *
+     * @throws \Throwable
      *
      * @see https://developer.paypal.com/docs/api/partner-referrals/v1/#merchant-integration_credentials
      */

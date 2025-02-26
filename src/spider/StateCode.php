@@ -12,7 +12,7 @@
  * This source file is subject to the MIT license that is bundled.
  */
 
-namespace pkg6\paypal;
+namespace pkg6\paypal\spider;
 
 use pkg6\paypal\contracts\CodeInterface;
 

@@ -37,7 +37,7 @@
     "jaeger/querylist": "^4.2"
   },
   "scripts": {
-    "spider-data": "php bin/spider_data"
+    "paypal-spider-data": "php bin/spider_data"
   },
   "autoload-dev": {
     "psr-4": {

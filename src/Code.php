@@ -16,6 +16,10 @@ namespace pkg6\paypal;
 
 use pkg6\paypal\contracts\CodeInterface;
 use pkg6\paypal\spider\CodeTable;
+use pkg6\paypal\spider\CountryCode;
+use pkg6\paypal\spider\CurrencyCode;
+use pkg6\paypal\spider\LocaleCode;
+use pkg6\paypal\spider\StateCode;
 use pkg6\paypal\support\Str;
 
 class Code

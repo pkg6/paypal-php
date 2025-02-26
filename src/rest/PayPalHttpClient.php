@@ -17,7 +17,7 @@ namespace pkg6\paypal\rest;
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Exception\ClientException as HttpClientException;
 use GuzzleHttp\Utils;
-use pkg6\paypal\LocaleCode;
+use pkg6\paypal\spider\LocaleCode;
 use pkg6\paypal\support\Str;
 use Psr\Http\Message\StreamInterface;
 use RuntimeException;

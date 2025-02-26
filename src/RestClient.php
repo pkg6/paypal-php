@@ -19,6 +19,7 @@ use pkg6\paypal\rest\PayPalAPI;
 use pkg6\paypal\rest\PayPalExperienceContext;
 use pkg6\paypal\rest\PayPalHttpClient;
 use pkg6\paypal\rest\PayPalVerifyIPN;
+use pkg6\paypal\spider\CurrencyCode;
 use Psr\SimpleCache\CacheInterface;
 use RuntimeException;
 
@@ -71,6 +72,7 @@ class RestClient
 
     /**
      * @param array $config
+     * @param \pkg6\paypal\contracts\Logger|null $logger
      * @param CacheInterface|null $cache
      */
     public function __construct(
