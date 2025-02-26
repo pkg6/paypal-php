@@ -2,12 +2,10 @@
 
 <?php
 
-use pkg6\paypal\Code;
+use pkg6\paypal\spider\Spider;
 
 require 'vendor/autoload.php';
 
-$code = new Code();
-
-foreach ($code->spider(true) as $class => $line) {
+foreach (Spider::spider(true) as $class => $line) {
     echo $class . ':' . $line . "\n";
 }

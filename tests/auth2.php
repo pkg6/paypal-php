@@ -1,5 +1,6 @@
 <?php
 
+require 'vendor/autoload.php';
 //https://developer.paypal.com/docs/log-in-with-paypal/
 //https://github.com/overtrue/socialite
 
